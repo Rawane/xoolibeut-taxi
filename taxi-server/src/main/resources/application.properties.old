@@ -1,0 +1,9 @@
+spring.jpa.hibernate.ddl-auto=create
+#spring.datasource.url=postgresql://ec2-54-235-248-197.compute-1.amazonaws.com:5432/didpdlkiv1uom?user=xgvhplwrkzhhdy&password=aa330827c38e8779242fead1598fd44b40aedfb45837df4cb6c80a1438d80144&sslmode=require
+#spring.datasource.username=taxi
+#spring.datasource.password=taxi
+#spring.datasource.driverClassName=org.postgresql.Driver
+#spring.jpa.database-platform = org.hibernate.dialect.PostgreSQL94Dialect
+#spring.jpa.show-sql = true
+#spring.jpa.hibernate.naming.implicit-strategy = org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+#spring.jpa.properties.hibernate.format_sql=true

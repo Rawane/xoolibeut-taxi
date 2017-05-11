@@ -1,0 +1,49 @@
+----Table client
+insert into client(client_id,nom,prenom,date_creation,date_modification) values(1,'MARTIN','Paul','2017-04-07 00:00:00','2017-04-07 00:00:00');
+insert into client(client_id,nom,prenom,date_creation,date_modification) values(2,'MARTIN','Kevin','2017-04-07 00:00:00','2017-04-07 00:00:00');
+insert into client(client_id,nom,prenom,date_creation,date_modification) values(3,'MARTIN','Pierre','2017-04-07 00:00:00','2017-04-07 00:00:00');
+insert into client(client_id,nom,prenom,date_creation,date_modification) values(4,'MARTIN','Sophie','2017-04-07 00:00:00','2017-04-07 00:00:00');
+----Table Chauffeur
+insert into chauffeur(chauffeur_id,nom,prenom,telephone,date_creation,date_modification) values(1,'MARTIN','Paul','0685963215','2017-04-07 00:00:00','2017-04-07 00:00:00');
+insert into chauffeur(chauffeur_id,nom,prenom,telephone,date_creation,date_modification) values(2,'MARTIN','Kevin','0685963215','2017-04-07 00:00:00','2017-04-07 00:00:00');
+insert into chauffeur(chauffeur_id,nom,prenom,telephone,date_creation,date_modification) values(3,'MARTIN','Pierre','0685963215','2017-04-07 00:00:00','2017-04-07 00:00:00');
+insert into chauffeur(chauffeur_id,nom,prenom,telephone,date_creation,date_modification) values(4,'MARTIN','Sophie','0685963215','2017-04-07 00:00:00','2017-04-07 00:00:00');
+----Table Taxi
+insert into taxi(taxi_id,nom,prenom,telephone,date_creation,date_modification,matricule) values(1,'MARTIN','Paul','0685963215','2017-04-07 00:00:00','2017-04-07 00:00:00','AV-515-BK');
+insert into taxi(taxi_id,nom,prenom,telephone,date_creation,date_modification,matricule) values(2,'MARTIN','Kevin','0685963215','2017-04-07 00:00:00','2017-04-07 00:00:00','AV-515-BK');
+insert into taxi(taxi_id,nom,prenom,telephone,date_creation,date_modification,matricule) values(3,'MARTIN','Pierre','0685963215','2017-04-07 00:00:00','2017-04-07 00:00:00','AV-515-BK');
+insert into taxi(taxi_id,nom,prenom,telephone,date_creation,date_modification,matricule) values(4,'MARTIN','Sophie','0685963215','2017-04-07 00:00:00','2017-04-07 00:00:00','AV-515-BK');
+
+----Table TaxiChauffeur
+insert into taxi_chauffeur(taxi_chauffeur_id,taxi_id,chauffeur_id,date_debut,date_creation,date_modification) values(1,1,1,'2017-04-07 00:00:00','2017-04-07 00:00:00','2017-04-07 00:00:00');
+insert into taxi_chauffeur(taxi_chauffeur_id,taxi_id,chauffeur_id,date_debut,date_creation,date_modification) values(2,2,2,'2017-04-07 00:00:00','2017-04-07 00:00:00','2017-04-07 00:00:00');
+insert into taxi_chauffeur(taxi_chauffeur_id,taxi_id,chauffeur_id,date_debut,date_creation,date_modification) values(3,3,3,'2017-04-07 00:00:00','2017-04-07 00:00:00','2017-04-07 00:00:00');
+insert into taxi_chauffeur(taxi_chauffeur_id,taxi_id,chauffeur_id,date_debut,date_creation,date_modification) values(4,4,4,'2017-04-07 00:00:00','2017-04-07 00:00:00','2017-04-07 00:00:00');
+
+----Table Demande Course
+insert into demande_course(demande_course_id,client_id,latitude,longitude,date_creation,date_modification) values(1,1,47.272317,-1.434688,'2017-04-07 00:00:00','2017-04-07 00:00:00');
+insert into demande_course(demande_course_id,client_id,latitude,longitude,date_creation,date_modification) values(2,2,47.295824,-1.482865,'2017-04-07 00:00:00','2017-04-07 00:00:00');
+insert into demande_course(demande_course_id,client_id,latitude,longitude,date_creation,date_modification) values(3,3,47.246696,-1.532006,'2017-04-07 00:00:00','2017-04-07 00:00:00');
+insert into demande_course(demande_course_id,client_id,latitude,longitude,date_creation,date_modification) values(4,4,47.243625,-1.533893,'2017-04-07 00:00:00','2017-04-07 00:00:00');
+
+----Table Course
+insert into course(course_id,demande_course_id,taxi_id,date_creation,date_modification,statut_course) values(1,1,1,'2017-04-07 00:00:00','2017-04-07 00:00:00','accepted');
+insert into course(course_id,demande_course_id,taxi_id,date_creation,date_modification,statut_course) values(2,2,2,'2017-04-07 00:00:00','2017-04-07 00:00:00','accepted');
+insert into course(course_id,demande_course_id,taxi_id,date_creation,date_modification,statut_course) values(3,3,3,'2017-04-07 00:00:00','2017-04-07 00:00:00','accepted');
+insert into course(course_id,demande_course_id,taxi_id,date_creation,date_modification,statut_course) values(4,4,4,'2017-04-07 00:00:00','2017-04-07 00:00:00','accepted');
+
+----Table Trace Course
+insert into trace_course(trace_course_id,course_id,date_trace,statut_trace) values(1,1,'2017-04-07 00:00:00','accepted');
+insert into trace_course(trace_course_id,course_id,date_trace,statut_trace) values(2,2,'2017-04-07 00:00:00','accepted');
+insert into trace_course(trace_course_id,course_id,date_trace,statut_trace) values(3,3,'2017-04-07 00:00:00','accepted');
+insert into trace_course(trace_course_id,course_id,date_trace,statut_trace) values(4,4,'2017-04-07 00:00:00','accepted');
+
+----Table Position taxi
+insert into position_taxi(position_taxi_id,taxi_id,latitude,longitude,date_position) values(1,1,47.272317,-1.434688,'2017-04-07 00:00:00');
+insert into position_taxi(position_taxi_id,taxi_id,latitude,longitude,date_position) values(2,2,47.295824,-1.482865,'2017-04-07 00:00:00');
+insert into position_taxi(position_taxi_id,taxi_id,latitude,longitude,date_position) values(3,3,47.246696,-1.532006,'2017-04-07 00:00:00');
+insert into position_taxi(position_taxi_id,taxi_id,latitude,longitude,date_position) values(4,4,47.243625,-1.533893,'2017-04-07 00:00:00');
+insert into position_taxi(position_taxi_id,taxi_id,latitude,longitude,date_position) values(5,1,47.243625,-1.533893,'2017-04-08 10:53:00');
+insert into position_taxi(position_taxi_id,taxi_id,latitude,longitude,date_position) values(6,1,47.243625,-1.533893,'2017-04-08 11:00:00');
+
+
