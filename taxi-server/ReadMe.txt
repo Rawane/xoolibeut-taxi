@@ -1,0 +1,2 @@
+-ej -a="chemin du projet" -b=PublicKeyJ.pem -n=lib;target;tomcat-suppervision;.git -al=RSA
+-dj -a="chemin du projet" -b=PublicKeyJ.pem -al=RSA
