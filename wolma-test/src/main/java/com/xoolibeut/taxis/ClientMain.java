@@ -12,31 +12,27 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class TaxiMain {
+public class ClientMain {
 
 	public static void main(String[] args) {
 
 		try {
 			PositionMap positionMap = new PositionMap();
-			List<PointMap> points = positionMap.getPoints();
-			int i=0;
-			while (i<10) {
-				pushPosition(points, "MB0001");
-				pushPosition(points, "MB0002");
-				pushPosition(points, "MB0003");
-				pushPosition(points, "MB0004");
-				pushPosition(points, "MB0005");
-				pushPosition(points, "MB0006");
-				pushPosition(points, "MB0007");
-				pushPosition(points, "MB0008");
-				pushPosition(points, "MB0009");
-				pushPosition(points, "MB0010");
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				i++;
+			List<PointMap> points = positionMap.getPointsClients();
+			pushPositionClient(points, "IB001",1);
+			pushPositionClient(points, "IB002",2);
+			pushPositionClient(points, "IB003",3);		
+			pushPositionClient(points, "IB004",5);
+			pushPositionClient(points, "IB005",6);
+			pushPositionClient(points, "IB006",7);
+			pushPositionClient(points, "IB007",8);
+			pushPositionClient(points, "IB008",9);
+			pushPositionClient(points, "IB009",10);
+			pushPositionClient(points, "IB010",4);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 
 		} catch (IOException e) {
@@ -45,19 +41,19 @@ public class TaxiMain {
 
 	}
 
-	private static void pushPosition(List<PointMap> points, String matricule)
+	private static void pushPositionClient(List<PointMap> points, String numeroClient,int indexPoint)
 			throws JsonProcessingException, IOException {
-		int indexPoint = (int) (points.size() * Math.random());
+		
 		ObjectMapper mapper = new ObjectMapper();
 		OkHttpClient client = new OkHttpClient();
 		CourseTaxiDTO courseTaxiDTO = new CourseTaxiDTO();
-		courseTaxiDTO.setC(matricule);
+		courseTaxiDTO.setC(numeroClient);
 		courseTaxiDTO.setA(points.get(indexPoint).getLatitude());
 		courseTaxiDTO.setO(points.get(indexPoint).getLongitude());
 		String req = mapper.writeValueAsString(courseTaxiDTO);
 		System.out.println("Request : " + req);
 		RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), req);
-		Request request = new Request.Builder().url("http://localhost:8080/taxis/v3/pos").post(body).build();
+		Request request = new Request.Builder().url("http://localhost:8080/clients/v3/res").post(body).build();
 		Response response = client.newCall(request).execute();
 		System.out.println(response.body().string());
 	}

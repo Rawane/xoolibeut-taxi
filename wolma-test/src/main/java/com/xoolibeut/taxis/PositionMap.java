@@ -6,8 +6,11 @@ import java.util.List;
 public class PositionMap {
 	private List<PointMap> points = new ArrayList<PointMap>();
 
+	private List<PointMap> pointsClients = new ArrayList<PointMap>();
+
 	public PositionMap() {
 		load();
+		loadClients();
 	}
 
 	/**
@@ -47,14 +50,34 @@ public class PositionMap {
 		points.add(new PointMap(14.424177, -16.956187));
 		points.add(new PointMap(14.422674, -16.949800));
 		points.add(new PointMap(14.425190, -16.962142));
+		points.add(new PointMap(14.432691530866265, -16.96735382080078));
+		points.add(new PointMap(14.429948489057892, -16.974949836730957));
+		points.add(new PointMap(14.42824446122106, -16.980013847351074));
+		points.add(new PointMap(14.4202228867615, -16.97662353515625));
+		points.add(new PointMap(14.43057191061816,-16.991515159606934 ));
+		points.add(new PointMap(14.415359926406207,-16.96834087371826 ));
 
+	}
+
+	private void loadClients() {
+		pointsClients.add(new PointMap(14.418497, -16.959393));
+		pointsClients.add(new PointMap(14.425050412690583, -16.961088180541992));
+		pointsClients.add(new PointMap(14.410004312441648, -16.9698429107666));
+		pointsClients.add(new PointMap(14.401857381386938, -16.955080032348633));
+		pointsClients.add(new PointMap(14.446009348782093, -16.980743408203125));
+		pointsClients.add(new PointMap(14.444347002725246, -17.005634307861328));
+		pointsClients.add(new PointMap(14.454487120378943, -17.027435302734375));
+		pointsClients.add(new PointMap(14.419896614283617, -16.975936889648438));
+		pointsClients.add(new PointMap(14.414160795262095, -16.973705291748047));
+		pointsClients.add(new PointMap(14.419474745921393, -16.95542335510254));
+		pointsClients.add(new PointMap(14.425916987499027, -16.95713996887207));
 	}
 
 	public List<PointMap> getPoints() {
 		return points;
-	}
+	}	
 
-	public void setPoints(List<PointMap> points) {
-		this.points = points;
+	public List<PointMap> getPointsClients() {
+		return pointsClients;
 	}
 }
