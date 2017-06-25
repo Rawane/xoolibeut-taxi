@@ -20,7 +20,7 @@ public class TaxiMain {
 			PositionMap positionMap = new PositionMap();
 			List<PointMap> points = positionMap.getPoints();
 			int i=0;
-			while (i<10) {
+			while (true) {
 				pushPosition(points, "MB0001");
 				pushPosition(points, "MB0002");
 				pushPosition(points, "MB0003");
@@ -36,7 +36,7 @@ public class TaxiMain {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				i++;
+				//i++;
 			}
 
 		} catch (IOException e) {
@@ -54,6 +54,14 @@ public class TaxiMain {
 		courseTaxiDTO.setC(matricule);
 		courseTaxiDTO.setA(points.get(indexPoint).getLatitude());
 		courseTaxiDTO.setO(points.get(indexPoint).getLongitude());
+		if(matricule.equals("MB0001")){
+			courseTaxiDTO.setIp("localhost");
+			courseTaxiDTO.setP("5550");
+		}
+		if(matricule.equals("MB0002")){
+			courseTaxiDTO.setIp("localhost");
+			courseTaxiDTO.setP("5555");
+		}
 		String req = mapper.writeValueAsString(courseTaxiDTO);
 		System.out.println("Request : " + req);
 		RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), req);

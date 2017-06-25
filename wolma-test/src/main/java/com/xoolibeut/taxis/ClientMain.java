@@ -19,8 +19,8 @@ public class ClientMain {
 		try {
 			PositionMap positionMap = new PositionMap();
 			List<PointMap> points = positionMap.getPointsClients();
-			pushPositionClient(points, "IB001",1);
-			pushPositionClient(points, "IB002",2);
+		pushPositionClient(points, "IB001",1);
+		    pushPositionClient(points, "IB002",2);
 			pushPositionClient(points, "IB003",3);		
 			pushPositionClient(points, "IB004",5);
 			pushPositionClient(points, "IB005",6);
