@@ -46,10 +46,12 @@ public class RouteurTaxiMain {
 								OkHttpClient client = new OkHttpClient();
 								Map<String, String> mapIn = new HashMap<>();
 								mapIn.put("i", courseTaxiDTO.getC());
-								mapIn.put("t", courseTaxiDTO.getH());								
+								mapIn.put("t", courseTaxiDTO.getH());	
+								mapIn.put("a", "14.427747");
+								mapIn.put("o", "-16.974093");	
 								String req = mapper.writeValueAsString(mapIn);
 								System.out.println("Request : " + req);
-								String endUrl="acc";
+								String endUrl="ref";
 								if(Math.random()>0.5){
 									endUrl="ref";
 								}

@@ -1,5 +1,9 @@
 package com.xoolibeut.taxis;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_NULL)
 public class CourseTaxiDTO {
 	/**
 	 * Numéro de taxi.
@@ -8,7 +12,7 @@ public class CourseTaxiDTO {
 	/**
 	 * course id
 	 */
-	private Long i;
+	private String i;
 	/**
 	 * date de course.
 	 */
@@ -37,6 +41,16 @@ public class CourseTaxiDTO {
 	 * signature
 	 */
 	private String s;
+	
+	private String m;
+	
+	private String tt;
+	
+	private String ty;
+	private String min;
+	private String max;
+	private String ci;
+	private String ta;
 
 	public String getC() {
 		return c;
@@ -46,13 +60,8 @@ public class CourseTaxiDTO {
 		this.c = c;
 	}
 
-	public Long getI() {
-		return i;
-	}
+	
 
-	public void setI(Long i) {
-		this.i = i;
-	}
 
 	public Long getE() {
 		return e;
@@ -117,5 +126,71 @@ public class CourseTaxiDTO {
 	public void setT(String t) {
 		this.t = t;
 	}
+
+	public String getM() {
+		return m;
+	}
+
+	public void setM(String m) {
+		this.m = m;
+	}
+
+	public String getTt() {
+		return tt;
+	}
+
+	public void setTt(String tt) {
+		this.tt = tt;
+	}
+
+	public String getTy() {
+		return ty;
+	}
+
+	public void setTy(String ty) {
+		this.ty = ty;
+	}
+
+	public String getMin() {
+		return min;
+	}
+
+	public void setMin(String min) {
+		this.min = min;
+	}
+
+	public String getMax() {
+		return max;
+	}
+
+	public void setMax(String max) {
+		this.max = max;
+	}
+
+	public String getCi() {
+		return ci;
+	}
+
+	public void setCi(String ci) {
+		this.ci = ci;
+	}
+
+	public String getI() {
+		return i;
+	}
+
+	public void setI(String i) {
+		this.i = i;
+	}
+
+	public String getTa() {
+		return ta;
+	}
+
+	public void setTa(String ta) {
+		this.ta = ta;
+	}
+
+	
 
 }

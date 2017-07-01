@@ -32,7 +32,7 @@ public class TaxiMain {
 				pushPosition(points, "MB0009");
 				pushPosition(points, "MB0010");
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(30000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

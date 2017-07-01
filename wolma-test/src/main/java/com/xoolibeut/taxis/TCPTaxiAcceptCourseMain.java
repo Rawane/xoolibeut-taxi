@@ -36,12 +36,14 @@ public class TCPTaxiAcceptCourseMain {
 								OkHttpClient client = new OkHttpClient();
 								Map<String, String> mapIn = new HashMap<>();
 								mapIn.put("i", courseTaxiDTO.getC());
-								mapIn.put("c", "MB0001");								
+								mapIn.put("c", "MB0001");		
+								mapIn.put("a", "14.427747");
+								mapIn.put("o", "-16.974093");	
 								String req = mapper.writeValueAsString(mapIn);
 								System.out.println("Request : " + req);
 								RequestBody body = RequestBody
 										.create(MediaType.parse("application/json; charset=utf-8"), req);
-								Request request = new Request.Builder().url("http://localhost:8080/taxis/v1/course/acc")
+								Request request = new Request.Builder().url("http://localhost:8080/taxis/v1/course/ref")
 										.post(body).build();
 								Response response = client.newCall(request).execute();
 								System.out.println(response.body().string());
