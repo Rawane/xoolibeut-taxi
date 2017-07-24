@@ -33,7 +33,7 @@ public class TCPTaxiAcceptCourseMain {
 							ObjectMapper mapper = new ObjectMapper();							
 							CourseTaxiDTO courseTaxiDTO = mapper.readValue(inputContent, CourseTaxiDTO.class);							
 							if ("p".equals(courseTaxiDTO.getT())) {
-								OkHttpClient client = new OkHttpClient();
+								OkHttpClient client = WolmaClientHttp.getSSLClient();
 								Map<String, String> mapIn = new HashMap<>();
 								mapIn.put("i", courseTaxiDTO.getC());
 								mapIn.put("c", "MB0001");		
@@ -43,7 +43,7 @@ public class TCPTaxiAcceptCourseMain {
 								System.out.println("Request : " + req);
 								RequestBody body = RequestBody
 										.create(MediaType.parse("application/json; charset=utf-8"), req);
-								Request request = new Request.Builder().url("http://localhost:8080/taxis/v1/course/ref")
+								Request request = new Request.Builder().url("https://localhost:8443/taxis/v1/course/ref")
 										.post(body).build();
 								Response response = client.newCall(request).execute();
 								System.out.println(response.body().string());
