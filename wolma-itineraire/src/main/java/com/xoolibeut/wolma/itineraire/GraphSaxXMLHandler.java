@@ -31,15 +31,13 @@ public class GraphSaxXMLHandler extends DefaultHandler {
 		} else {
 			if (qName.equalsIgnoreCase("pt")) {
 				// create a new instance of Pointvoisin
-				pointGeographique = new PointGeographique();
-				graph.putPoint(pointGeographique);
+				pointGeographique = new PointGeographique();				
 				startPoint = true;
 				startWay = false;
 			} else {
 				if (qName.equalsIgnoreCase("w")) {
 					// create a new instance of Pointvoisin
-					wayWolma = new WayWolma();
-					graph.putWay(wayWolma);
+					wayWolma = new WayWolma();					
 					startPoint = false;
 					startWay = true;
 
@@ -57,6 +55,7 @@ public class GraphSaxXMLHandler extends DefaultHandler {
 		} else {
 			if (startPoint) {
 				if (qName.equalsIgnoreCase("pt")) {
+					graph.putPoint(pointGeographique);
 					if ("o".equals(pointGeographique.getIn())) {
 						graph.putPointGraph(pointGeographique);
 						graph.putPointSecteur(pointGeographique);
@@ -87,9 +86,13 @@ public class GraphSaxXMLHandler extends DefaultHandler {
 				if (qName.equalsIgnoreCase("v")) {
 					pointGeographique.getVoisins().add(tempVal);
 				}
+				if (qName.equalsIgnoreCase("rt")) {
+					pointGeographique.getRoutes().add(tempVal);
+				}
 			} else {
 				if (startWay) {
 					if (qName.equalsIgnoreCase("w")) {
+						graph.putWay(wayWolma);
 						startWay = false;
 					}
 					if (qName.equalsIgnoreCase("id")) {

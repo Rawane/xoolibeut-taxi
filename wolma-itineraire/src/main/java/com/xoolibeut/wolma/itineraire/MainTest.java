@@ -33,8 +33,12 @@ public class MainTest {
 			graph.setDistanceLointain(4000D);
 			graph.setDistanceLointain(7000D);
 			ItineraireWolma itineraireWolma = new ItineraireWolma(graphService, graph);
-			itineraireWolma.calculeItineraire(14.41666226, -16.9546365, 14.4132955,
-					-16.9616317);
+			//itineraireWolma.calculeItineraire(14.41666226, -16.9546365, 14.4132955,
+			//		-16.9616317);
+			System.out.println("------Test");
+			itineraireWolma.calculeItineraire(14.421494374, -16.98135852, 14.423551737,
+					-16.983697414);
+			System.out.println("------Fin Test");
 			System.out.println("Itineraire size   " + itineraireWolma.getItineraires().size());
 			System.out.println("Itineraire  " + itineraireWolma.getItineraires().get(0).getChemins().size());
 			System.out.println("Fin ----------------------");
