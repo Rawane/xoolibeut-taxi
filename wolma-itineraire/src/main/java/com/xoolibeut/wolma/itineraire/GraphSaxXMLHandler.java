@@ -1,5 +1,7 @@
 package com.xoolibeut.wolma.itineraire;
 
+import java.util.function.Predicate;
+
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
@@ -18,7 +20,9 @@ public class GraphSaxXMLHandler extends DefaultHandler {
 	private GraphItineraire graph;
 	private boolean startPoint;
 	private boolean startWay;
+	private boolean startRoutePosition;
 	private PointGeographique pointGeographique;
+	private RoutePosition routePosition;
 	private WayWolma wayWolma;
 
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
@@ -31,16 +35,22 @@ public class GraphSaxXMLHandler extends DefaultHandler {
 		} else {
 			if (qName.equalsIgnoreCase("pt")) {
 				// create a new instance of Pointvoisin
-				pointGeographique = new PointGeographique();				
+				pointGeographique = new PointGeographique();
 				startPoint = true;
 				startWay = false;
 			} else {
 				if (qName.equalsIgnoreCase("w")) {
 					// create a new instance of Pointvoisin
-					wayWolma = new WayWolma();					
+					wayWolma = new WayWolma();
 					startPoint = false;
 					startWay = true;
 
+				} else {
+					if (qName.equalsIgnoreCase("r")) {
+						routePosition = new RoutePosition();
+						startRoutePosition = true;
+
+					}
 				}
 			}
 		}
@@ -63,10 +73,18 @@ public class GraphSaxXMLHandler extends DefaultHandler {
 					startPoint = false;
 				}
 				if (qName.equalsIgnoreCase("id")) {
-					pointGeographique.setId(tempVal);
+					if (startRoutePosition) {
+						routePosition.setRoute(tempVal);
+					} else {
+						pointGeographique.setId(tempVal);
+					}
 				}
 				if (qName.equalsIgnoreCase("i")) {
-					pointGeographique.setIn(tempVal);
+					if (startRoutePosition) {
+						routePosition.setPosition(Integer.parseInt(tempVal));
+					} else {
+						pointGeographique.setIn(tempVal);
+					}
 				}
 				if (qName.equalsIgnoreCase("a")) {
 					pointGeographique.setLat(Double.parseDouble(tempVal));
@@ -86,8 +104,9 @@ public class GraphSaxXMLHandler extends DefaultHandler {
 				if (qName.equalsIgnoreCase("v")) {
 					pointGeographique.getVoisins().add(tempVal);
 				}
-				if (qName.equalsIgnoreCase("rt")) {
-					pointGeographique.getRoutes().add(tempVal);
+				if (qName.equalsIgnoreCase("r")) {
+					pointGeographique.getRoutes().add(routePosition);
+					startRoutePosition = false;
 				}
 			} else {
 				if (startWay) {
@@ -124,6 +143,7 @@ public class GraphSaxXMLHandler extends DefaultHandler {
 	public void setTempVal(String tempVal) {
 		this.tempVal = tempVal;
 	}
+
 	public GraphItineraire getGraph() {
 		return graph;
 	}
@@ -131,13 +151,44 @@ public class GraphSaxXMLHandler extends DefaultHandler {
 	public void setGraph(GraphItineraire graph) {
 		this.graph = graph;
 	}
+
+	public <T> void majRouteGraph() {
+		for (String key : graph.getMapPointsGraph().keySet()) {
+			PointGeographique pointGeographique = graph.getMapPointsGraph().get(key);
+			for (RoutePosition route : pointGeographique.getRoutes()) {
+				WayWolma wayWolma = graph.getWay(route.getRoute());
+				if (wayWolma != null) {
+					if (wayWolma.getPoints().size() >= route.getPosition()) {
+						wayWolma.getPoints().add(route.getPosition(), pointGeographique);
+					} else {
+						int sizeWay = wayWolma.getPoints().size();
+						for (int i = 0; i < route.getPosition() - sizeWay; i++) {
+							wayWolma.getPoints().add(null);
+						}
+						wayWolma.getPoints().add(route.getPosition(), pointGeographique);
+					}
+				}
+			}
+
+		}
+		for (String key : graph.getMapWay().keySet()) {
+			Predicate<? super PointGeographique> filter = new Predicate<PointGeographique>() {
+				public boolean test(PointGeographique point) {
+					return point == null;
+				}
+			};
+			graph.getWay(key).getPoints().removeIf(filter);
+
+		}
+	}
+
 	public static void main(String[] args) {
 		try {
 			System.out.println("--------------------------------------");
 			SAXParserFactory factory = SAXParserFactory.newInstance();
 			SAXParser saxParser = factory.newSAXParser();
-			GraphSaxXMLHandler osmSaxXMLHandler = new GraphSaxXMLHandler();
-			saxParser.parse("C:\\perso\\devs\\geolocalisation\\mbour.xml", osmSaxXMLHandler);
+			GraphSaxXMLHandler graphSaxXMLHandler = new GraphSaxXMLHandler();
+			saxParser.parse("C:\\perso\\devs\\geolocalisation\\Mbour_graph.xml", graphSaxXMLHandler);
 
 		} catch (Exception e) {
 			e.printStackTrace();

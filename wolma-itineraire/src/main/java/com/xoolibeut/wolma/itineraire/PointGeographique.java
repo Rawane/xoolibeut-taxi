@@ -24,15 +24,15 @@ public class PointGeographique {
 	 */
 	private List<String> voisins = new ArrayList<String>();
 
-	private List<String> routes = new ArrayList<String>();
+	private List<RoutePosition> routes = new ArrayList<RoutePosition>();
 
 	@Override
 	public boolean equals(Object object) {
 		if (null == object || object.getClass() != this.getClass()) {
 			return false;
 		}
-		PointGeographique node = (PointGeographique) object;
-		return equals(this.id, node.getId());
+		PointGeographique point = (PointGeographique) object;
+		return equals(this.id, point.getId());
 	}
 
 	private boolean equals(String id, String idRef) {
@@ -102,11 +102,11 @@ public class PointGeographique {
 		this.poidsIntersection = poidsIntersection;
 	}
 
-	public List<String> getRoutes() {
+	public List<RoutePosition> getRoutes() {
 		return routes;
 	}
 
-	public void setRoutes(List<String> routes) {
+	public void setRoutes(List<RoutePosition> routes) {
 		this.routes = routes;
 	}
 

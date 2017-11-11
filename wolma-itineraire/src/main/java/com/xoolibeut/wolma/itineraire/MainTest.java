@@ -1,5 +1,6 @@
 package com.xoolibeut.wolma.itineraire;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,8 +9,11 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 public class MainTest {
-
 	public static void main(String[] args) {
+		List<String> listPoints=new ArrayList<String>();
+		listPoints.add(0, "ssssss");
+	}
+	public static void main1(String[] args) {
 		try {
 			System.out.println("calcule  itineraire  ");
 			GraphService graphService = new AbstractGraphService() {

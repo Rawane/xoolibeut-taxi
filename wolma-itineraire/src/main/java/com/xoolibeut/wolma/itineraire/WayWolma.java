@@ -1,5 +1,8 @@
 package com.xoolibeut.wolma.itineraire;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WayWolma {
 	private String id;
 	private String highway;
@@ -7,6 +10,8 @@ public class WayWolma {
 	private String ref;
 	private Integer vitesse;
 	private String sensUnique="N";
+	private List<PointGeographique> points=new ArrayList<PointGeographique>();
+	
 
 	public String getId() {
 		return id;
@@ -54,6 +59,14 @@ public class WayWolma {
 
 	public void setSensUnique(String sensUnique) {
 		this.sensUnique = sensUnique;
+	}
+
+	public List<PointGeographique> getPoints() {
+		return points;
+	}
+
+	public void setPoints(List<PointGeographique> points) {
+		this.points = points;
 	}
 
 }

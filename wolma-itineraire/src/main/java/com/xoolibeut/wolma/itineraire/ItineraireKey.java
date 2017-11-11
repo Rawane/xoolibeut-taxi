@@ -1,0 +1,12 @@
+package com.xoolibeut.wolma.itineraire;
+
+public interface ItineraireKey {
+	int MAX_ITERATION_LOCAL = 200;
+	int MAX_ITERATION_MEDIUM = 500;
+	int MAX_ITERATION_LOINTAIN = 2000;
+	int MAX_ITERATION_TRES_LOINTAIN = 20000;
+	double MAX_ECART_AUTORISE_LOCAL = 200;
+	double MAX_ECART_AUTORISE_MEDIUM = 500;
+	double MAX_ECART_AUTORISE_LOINTAIN = 500;
+	double MAX_ECART_AUTORISE_TRES_LOINTAIN = 2000;
+}
