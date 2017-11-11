@@ -45,7 +45,7 @@ public class PointGeographique {
 	 */
 	private Set<String> v = new HashSet<String>();
 	
-	private List<String> rt = new ArrayList<String>();
+	private List<RoutePosition> r = new ArrayList<RoutePosition>();
 
 	@Override
 	public boolean equals(Object object) {
@@ -125,12 +125,12 @@ public class PointGeographique {
 		this.pi = poidsIntersection;
 	}
 
-	public List<String> getRoutes() {
-		return rt;
+	public List<RoutePosition> getRoutes() {
+		return r;
 	}
 
-	public void setRoutes(List<String> routes) {
-		this.rt = routes;
+	public void setRoutes(List<RoutePosition> routes) {
+		this.r = routes;
 	}
 
 	public Set<String> getVoisins() {
